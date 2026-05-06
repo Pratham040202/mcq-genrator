@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ITKC Question Bank System</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial;
+    height: 100vh;
+    overflow-x: hidden;
+
+    /* 🌊 Animated Gradient Background */
+    background: linear-gradient(-45deg, #e3f2fd, #bbdefb, #e1f5fe, #f0f8ff);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* HEADER IMAGE */
+.header-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #0b3d91;
+    color: white;
+    padding: 14px 30px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* MAIN CARD */
+.container {
+    max-width: 650px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+/* TITLE */
+h1 {
+    color: #0b3d91;
+    margin-bottom: 10px;
+}
+
+/* DESCRIPTION */
+.desc {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* INFO BOX */
+.info {
+    background: #f1f6fb;
+    border-left: 4px solid #0b3d91;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* UPLOAD */
+.upload-box {
+    border: 2px dashed #ccc;
+    padding: 30px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.upload-box:hover {
+    border-color: #0b3d91;
+    background: #fafcff;
+}
+
+/* BUTTONS */
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.generate {
+    background: #2e7d32;
+    color: white;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.generate:hover {
+    background: #256428;
+}
+
+.download {
+    background: #1565c0;
+    color: white;
+    margin: 8px;
+    min-width: 140px;
+}
+
+.download:hover {
+    background: #0d47a1;
+}
+
+/* DOWNLOAD SECTION */
+.downloads {
+    margin-top: 25px;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: #555;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER IMAGE (FULL WIDTH, PROPER FIT) -->
+<img src="{{ url_for('static', filename='itkc-header.png') }}" class="header-img">
+
+<!-- NAVBAR -->
+<div class="navbar">
+    Infotech Corporation of Goa Limited | IT Knowledge Center (ITKC)
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+    <h1>📘 Question Bank Generator</h1>
+    <p class="desc">
+        Generate structured MCQ question papers for student assessment.
+    </p>
+
+    <div class="info">
+        Upload a .docx file to generate categorized MCQ question papers:
+        <b>Easy, Medium, and Hard</b>.
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <div class="upload-box">
+            <strong>Select Document (.docx)</strong><br><br>
+            <input type="file" name="file" required>
+        </div>
+
+        <button class="generate">
+            Generate Question Papers
+        </button>
+
+    </form>
+
+    {% if ready %}
+    <div class="downloads">
+        <h3>Download Papers</h3>
+
+        <a href="/download/easy">
+            <button class="download">⬇ Easy</button>
+        </a>
+
+        <a href="/download/medium">
+            <button class="download">⬇ Medium</button>
+        </a>
+
+        <a href="/download/hard">
+            <button class="download">⬇ Hard</button>
+        </a>
+    </div>
+    {% endif %}
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 Infotech Corporation of Goa Limited | IT Knowledge Center (ITKC)  
+    <br> Government of Goa | Digital Learning & Assessment System
+</div>
+
+</body>
+</html>
